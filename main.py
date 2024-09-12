@@ -40,3 +40,8 @@ def createacc(request:schemas.RegisterStudentAcc, db:Session=Depends(get_db)):
     except:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR ,detail=f"An error occurred when saving the info in the db")
     return {"Message":"Account Created Successfully"}
+
+@app.get('/student-accounts', response_model=list[schemas.StudentAccountResponse])
+def get_accs(db:Session=Depends(get_db)):
+    accounts = db.query(models.StudentAccs).all()
+    return accounts

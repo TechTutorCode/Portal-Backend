@@ -18,18 +18,17 @@ class Student(Base):
     course_student_lists = relationship("CourseStudentList", back_populates="student")
     attendances = relationship("Attendance", back_populates="student")
     payments = relationship("Payments", back_populates="student")
-    saccs = relationship("StudentAccs", back_populates="student")
+    # saccs = relationship("StudentAccs", back_populates="student")
 
 
 class StudentAccs(Base):
     __tablename__='studentAcc'
     id=Column(Integer,primary_key=True,index=True)
-    studentID=Column(Integer,ForeignKey('students.id'))
     email=Column(String, nullable=False)
     password=Column(String, nullable=True)
     isverified=Column(Boolean, nullable=True, default=False)
     createdAt=Column(DateTime, default=func.now())
-    student = relationship("Student", back_populates="saccs")
+    # student = relationship("Student", back_populates="saccs")
 
 class Trainer(Base):
     __tablename__='trainers'
